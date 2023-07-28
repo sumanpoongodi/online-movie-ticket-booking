@@ -1,0 +1,80 @@
+<html>
+<head>
+  <title>Login Page</title>
+  <style>
+    body {
+      background-color: linen;
+    }
+    button {
+      width: 100%;
+      color: orange;
+      padding: 15px;
+      margin: 10px 0px;
+      border: none;
+    }
+    .hard {
+      width: 50%;
+      padding: 25px;
+      margin-left: 20%;
+      background-color: pink;
+    }
+    input[type=text],
+    input[type=password] {
+      width: 100%;
+      margin: 8px 0;
+      padding: 12px 20px;
+      box-sizing: border-box;
+    }
+    .cancelbutton {
+      width: auto;
+      padding: 10px 18px;
+      margin: 10px 5px;
+    }
+    .error {
+      color: red;
+      font-size: 12px;
+      margin-top: 5px;
+    }
+  </style>
+</head>
+<body>
+  <center>
+    <h1 style="color: brown"><b><i>Login</i></b></h1>
+  </center>
+  <form id="loginForm" action="store1.jsp" method="post">
+    <div class="hard">
+      <label>Email:</label>
+      <input type="text" placeholder="Enter email" name="email" required>
+      <label>Password:</label>
+      <input type="password" placeholder="Enter Password" name="password" id="password" required>
+      <span id="passwordError" class="error"></span>
+      <button type="submit">Login</button>
+      <a href="signup.html"><button type="button">Sign Up</button></a>
+      <button type="button" class="cancelbutton">Cancel</button>
+      Forgot <a href="#">password?</a>
+    </div>
+  </form>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script>
+    $(document).ready(function() {
+      $('#loginForm').submit(function(event) {
+        event.preventDefault();
+
+        var password = $('#password').val();
+
+        var strongRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])(?=.{8,})/;
+
+        if (!strongRegex.test(password)) {
+          $('#passwordError').text(
+            "Password must contain at least 8 characters, including uppercase, lowercase, numeric, and special characters."
+          );
+          return false;
+        } else {
+          $('#passwordError').text("");
+          this.submit(); // Submit the form if password is valid
+        }
+      });
+    });
+  </script>
+</body>
+</html>

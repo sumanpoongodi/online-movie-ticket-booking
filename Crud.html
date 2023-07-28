@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Movie Database</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <style>
+        body {
+            padding: 20px;
+        }
+
+        h1 {
+            margin-bottom: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Movie Database</h1>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Title</th>
+                    <th>Genre</th>
+                    <th>Duration</th>
+                    <th>Actors</th>
+                    <th>Director</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody id="movie-table">
+                <!-- Table rows will be dynamically added using JavaScript -->
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Modal for Edit Movie -->
+    <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="editModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="editModalLabel">Edit Movie</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form id="edit-movie-form">
+                        <div class="form-group">
+                            <label for="edit-title">Title</label>
+                            <input type="text" id="edit-title" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="edit-genre">Genre</label>
+                            <input type="text" id="edit-genre" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="edit-duration">Duration</label>
+                            <input type="text" id="edit-duration" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="edit-actors">Actors</label>
+                            <input type="text" id="edit-actors" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="edit-director">Director</label>
+                            <input type="text" id="edit-director" class="form-control" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Save Changes</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+    <script>
+        var editMovieId; // Stores the movie ID to be edited
+
+        // Function to display the edit modal
+        function displayEditModal(movieId, title, genre, duration, actors, director) {
+            editMovieId = movieId;
+            document.getElementById("edit-title").value = title;
+            document.getElementById("edit-genre").value = genre;
+            document.getElementById("edit-duration").value = duration;
+            document.getElementById("edit-actors").value = actors;
+            document.getElementById("edit-director").value = director;
+            $("#editModal").modal("show");
+        }
+
+        // Function to dynamically add a movie to the table
+        function addMovieToTable(id, title, genre, duration, actors, director) {
+            var tableRow = `
+                <tr>
+                    <td>${id}</td>
+                    <td>${title}</td>
+                    <td>${genre}</td>
+                    <td>${duration}</td>
+                    <td>${actors}</td>
+                    <td>${director}</td>
+                    <td>
+                        <button class="btn btn-primary" onclick="displayEditModal(${id}, '${title}', '${genre}', '${duration}', '${actors}', '${director}')">Edit</button>
+                        <button class="btn btn-danger" onclick="deleteMovie(${id})">Delete</button>
+                    </td>
+                </tr>
+            `;
+            document.getElementById("movie-table").innerHTML += tableRow;
+        }
+
+        // Function to handle the form submission for editing a movie
+        document.getElementById("edit-movie-form").addEventListener("submit", function(event) {
+            event.preventDefault();
+            var editedTitle = document.getElementById("edit-title").value;
+            var editedGenre = document.getElementById("edit-genre").value;
+            var editedDuration = document.getElementById("edit-duration").value;
+            var editedActors = document.getElementById("edit-actors").value;
+            var editedDirector = document.getElementById("edit-director").value;
+            // Perform AJAX request to update the movie in the database using the editMovieId
+            // ...
+
+            // Close the modal
+            $("#editModal").modal("hide");
+        });
+
+        // Function to handle the delete movie action
+        function deleteMovie(movieId) {
+            // Perform AJAX request to delete the movie from the database using movieId
+            // ...
+        }
+
+        // Example usage
+        // Add movies to the table
+        addMovieToTable(1, "Inception", "Thriller", "148 min", "Leonardo DiCaprio, Joseph Gordon-Levitt", "Christopher Nolan");
+        addMovieToTable(2, "The Dark Knight", "Action", "152 min", "Christian Bale, Heath Ledger", "Christopher Nolan");
+        addMovieToTable(3, "Pulp Fiction", "Crime", "154 min", "John Travolta, Uma Thurman", "Quentin Tarantino");
+    </script>
+</body>
+</html>

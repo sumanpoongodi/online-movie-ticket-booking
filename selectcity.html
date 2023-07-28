@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Movie Ticket Booking</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<link rel="stylesheet" href="selectcity2.css">
+  <style>
+  .nav{
+  display: inline-block;
+  font-size: 20px;
+  padding: 20px;
+  background-color:violet; 
+}
+.container {   
+      width: 50%;
+      padding: 25px;
+      margin-left: 20%;
+      background-color: #f2f2f2;  
+      max-width: 400px;
+      margin: 50px auto;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.8);
+    }
+    .form-group {
+      margin-bottom: 20px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h3><samp>Movie Ticket Booking</samp></h3>
+    <form>
+      <div class="form-group">
+        <label for="city">Select City:</label>
+        <select class="form-control" id="city" required>
+          <option value="">-- Select City --</option>
+          <option value="city1">Chennai</option>
+          <option value="city2">Salem</option>
+          <option value="city3">Mumbai</option>
+          <option value="city3">Kochi</option>
+          <option value="city3">Erode</option>
+        </select>
+      </div>
+      
+      <button id="nextButton" class="btn btn-default">Next</button>
+    </form>
+    
+  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel"><b>ONLINE MOVIE TICKET BOOKING</b></h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        Welcome to online movie ticket booking 
+        <b><mark>!Note Select Vaild Information</mark></b>
+      </div>
+      <div class="modal-footer">
+      <div class="nav"><!--inline-block to Create Navigation Links-->
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button><a href="login.html" class="btn btn-secondary">Admin</a></button>      
+        <button><a href="Theaterselection.html" class="btn btn-secondary">Customer</a></button>
+	</div>
+      </div>
+    </div>
+  </div>
+</div>
+  </div>
+  
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <script>
+    $(document).ready(function(e) {
+      $("#nextButton").click(function() {
+        const selectedCity = $("#city").val();
+
+        if (selectedCity) {
+          
+          $('#exampleModal').modal('show');
+          return false;
+          
+        } else {
+          alert("Please select a city.");
+        }
+      });
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Movie Ticket Booking</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <style>
+    body {
+      background-color:lightgreen;
+    }
+
+    .container {
+      max-width: 600px;
+      margin: 50px auto;
+      padding: 20px;
+      background-color:lightGray;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h3>Movie Theater Booking</h3>
+    <form id="bookingForm">
+      <div class="form-group">
+        <label for="theater">Select Theater:</label>
+        <select class="form-control" id="theater" required>
+          <option value="">-- Select Theater --</option>
+          <option value="theater1">INOX</option>
+          <option value="theater2">ARRS</option>
+          <option value="theater3">AASCAR</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="showTime">Select Show Time:</label>
+        <select class="form-control" id="showTime" required>
+          <option value="">-- Select Show Time --</option>
+          <option value="09:00 AM">09:00 AM</option>
+          <option value="12:00 PM">12:00 PM</option>
+          <option value="03:00 PM">03:00 PM</option>
+          <option value="06:00 PM">06:00 PM</option>
+          <option value="09:00 PM">09:00 PM</option>
+        </select>
+      </div>
+      <a href="Moviedisplay.jsp"><button>Book Now</button></a>
+    </form>
+  </div>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script>
+    $(document).ready(function() {
+      $('#bookingForm').submit(function(event) {
+        event.preventDefault();
+
+        const selectedTheater = $('#theater').val();
+        const selectedShowTime = $('#showTime').val();
+
+        if (selectedTheater && selectedShowTime) {
+          alert('Selected Theater: ' + selectedTheater + '\nSelected Show Time: ' + selectedShowTime);
+          
+          // You can perform additional actions here, such as redirecting to a payment page
+        } else {
+          alert('Please select a theater and show time.');
+        }
+      });
+    });
+  </script>
+  
+</body>
+</html>
